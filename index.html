@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Cotizador Inmobiliario</title>
+</head>
+
+<body>
+  <header id="header" class="menu-container">
+
+
+    <div class="logo-box">
+      <a href="index.html"><img id="header-img" src="image/logo.png"></a>
+    </div>
+
+
+    <nav id="nav-bar">
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+      <ul class="menu">
+        <li><a href="#modelos" class="nav-link">Tasaciones</a></li>
+        <li><a href="#precios" class="nav-link">Precios</a></li>
+
+        <label class="switch switch--sm">
+          <span class="switch__label">Activar Modo Oscuro</span>
+          <span class="switch__container">
+            <input type="checkbox" class="switch__input" data-toggle="theme">
+            <span class="switch__slider"></span>
+          </span>
+        </label>
+      </ul>
+    </nav>
+
+  </header>
+
+
+
+  <main class="container">
+    <section class="hero container">
+      <h1 class="hero-title-primary">Cotiza tu Hogar</h1>
+      <p id="title" class="hero-title-sub">¿Sabés cuanto vale tu casa?</p>
+
+      <div id="ejemplo"> </div>
+      <div id="datosGeo"> </div>
+
+      <form id="form1" method="post" action="">
+
+        <div class="tab">
+          <h3>Elige que tipo de vivienda cotizar</h3>
+          <br>
+          <div class="mc-field-group input-group option-flex">
+            <div class="custom-radio">
+              <div class="radio-item">
+                <input type="radio" value="Casa" name="unidad" id="casa1" required>
+                <label class="label-icon option1" for="casa1">Casa</label>
+              </div>
+              <p class="or-separator"> O</p>
+              <div class="radio-item">
+                <input type="radio" value="Departamento" name="unidad" id="dto1">
+                <label class="label-icon option2" for="dto1">Departamento</label>
+              </div>
+            </div>
+          </div>
+          <span>
+            <p class="error" id="unidad_error"></p>
+          </span>
+
+        </div>
+
+        <div class="tab" id="seleccioneRegion">
+          <h3>¿Dónde se encuentra la propiedad?</h3>
+          <br>
+          <div class="mc-field-group input-group option-block">
+            <div class="custom-radio">
+              <div class="radio-item">
+                <input type="radio" value="caba" name="ubicar" id="caba" required>
+                <label class="label-icon" style="display: block;" for="caba">Capital Federal</label>
+              </div>
+
+              <div class="radio-item">
+                <input type="radio" value="pcia" name="ubicar" id="pcia">
+                <label class="label-icon" style="display: block;" for="pcia">Provincia de Bs. As</label>
+              </div>
+            </div>
+          </div>
+          <span>
+            <p class="error" id="ubicar_error"></p>
+          </span>
+
+        </div>
+
+
+        <div class="tab" id="escribirDireccion">
+          <div class="form-group">
+            <label class="labelUbicacion">Ubicación</label>
+            <div class="ubicacion">
+              <input type="text" class="form-control" id="direccion_calle" placeholder="Escriba la calle" />
+              <input type="text" class="form-control" id="direccion_numero" placeholder="Escriba el numero" />
+            </div>
+            <span>
+              <p class="error" id="direccion_error"></p>
+            </span>
+          </div>
+
+        </div>
+        <div class="tab" id="lugarPcia">
+          <select id="place">
+            <option value="none">¿Dónde se ubica?</option>
+            <option value="VICENTE LOPEZ">VICENTE LOPEZ</option>
+            <option value="OLIVOS">OLIVOS</option>
+            <option value="MARTINEZ">MARTINEZ</option>
+            <option value="SAN ISIDRO">SAN ISIDRO</option>
+            <option value="TIGRE">TIGRE</option>
+            <option value="RAMOS MEJIA">RAMOS MEJIA</option>
+            <option value="HAEDO">HAEDO</option>
+            <option value="MORON">MORON</option>
+            <option value="AVELLANEDA">AVELLANEDA</option>
+            <option value="QUILMES">QUILMES</option>
+            <option value="LANUS">LANUS</option>
+            <option value="LOMAS DE ZAMORA">LOMAS DE ZAMORA</option>
+            <option value="LA PLATA">LA PLATA</option>
+
+
+          </select>
+
+          <span>
+            <p class="error" id="lugar_error"></p>
+          </span>
+        </div>
+
+        <div class="tab" id="indiqueMetros">
+          <input type="number" min="1" pattern="^[1-9]\d*$" name="metroValor" id="m2_propiedad"
+            placeholder="Ingrese los m2">
+          <span>
+            <p class="error" id="metros_error"></p>
+          </span>
+        </div>
+
+
+
+        <div style="overflow:auto;">
+          <div id="botones" style="float:right;">
+            <button type="button" id="prevBtn">Anterior</button>
+            <button type="button" id="nextBtn" class="next">Siguiente</button>
+          </div>
+        </div>
+
+
+      </form>
+
+
+
+    </section>
+    <div class="hero-image">
+      <img class="imageHeader" src="image/construccion.png">
+    </div>
+
+  </main>
+
+
+  <!--Content starts-->
+  <section class="acerca-content">
+
+    <div class="acerca-story">
+      <h1 class="acerca-title">Acerca</h1>
+      <p class="acerca-subtitle1">Calcular la cotización inmobiliaria nunca fue tan fácil</p>
+      <p class="acerca-text">CalculaM2 tiene una experiencia de usuario similar a Excel que le permite familiarizarse
+        rápidamente con sus posibilidades y comenzar a crear estimaciones de inmediato. </p>
+    </div>
+
+
+
+  </section>
+
+
+  <!--Content starts-->
+  <section id="barriosCarosSeccion" class="content">
+    <h3>Los Barrios Más Cotizados</h1>
+  </section>
+
+
+  <section id="modelos" class="content">
+
+    <div class="inner-content">
+      <div class="inner-content-text content__TextLeft">
+        <div class="inter-content-subtitle">
+          Tips para Mejores Tasaciones
+        </div>
+
+        <div class="inner-content-title">
+          Como mejorar la tasación de tu hogar
+        </div>
+
+        <div class="inner-content-para">
+          <p>Para que un living luzca acogedor y cálido, además de seleccionar bien los muebles y cuidar los colores y
+            textiles, es importante prestar atención a la iluminación. Y es que la luz es la clave, una verdadera llave
+            maestra que convierte una casa en un hogar.</p>
+        </div>
+      </div>
+
+      <div class="inner-image-container container__ImageRight">
+        <div class="inner-content-image content__ImageRight">
+          <img class="section-images" src="image/vivienda.jpg" style="object-position: 50% 50%;">
+        </div>
+      </div>
+    </div>
+
+    <div class="inner-content">
+      <div class="inner-content-text content__TextRight">
+
+
+        <div class="inner-content-title">
+          La importancia del baño
+        </div>
+
+        <div class="inner-content-para">
+          <p>Es decisivo ver todos con igual esmero, aunque se prestará más interés en los baños y cocinas, que es donde
+            se pueden ocultar detalles más costosos de reparar, ya que se trata de las zonas húmedas de cada vivienda.
+          </p>
+        </div>
+      </div>
+
+      <div class="inner-image-container container__ImageLeft">
+        <div class="inner-content-image content__ImageLeft">
+          <img class="section-images" src="image/reforma.jpg" style="object-position: 50% 50%;">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="pricing-container">
+    <div id="precios" class="pricing-title">
+      <h2>Precios</h2>
+    </div>
+
+    <div class="flex-container">
+      <div class="flex-item">
+        <ul class="package">
+          <li class="header">Gratis</li>
+          <li class="gray"><sup class="dolla">$</sup>0<br><span class="month">Única Vez<span></li>
+          <li class="features first-feat">Información Limitada</li>
+          <li class="features">Datos actualizados mensualmente</li>
+
+          <li>
+            <button class="pricing-button" href="#" data-name="Plan Gratis" data-price="0">Gratis</button>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-item">
+        <ul class="package">
+          <li class="header">Pro</li>
+          <li class="gray"><sup class="dolla">$</sup>300<br><span class="month">Única Vez<span></li>
+          <li class="features first-feat">Información Ampliada</li>
+          <li class="features">Tasaciones Personalizadas</li>
+          <li class="features">Contacto por Correo</li>
+          <li>
+            <button class="pricing-button" href="#" data-name="Plan Pro" data-price="300">Elegir Pro</button>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-item">
+        <ul class="package">
+          <li class="header">Empresario</li>
+          <li class="gray"><sup class="dolla">$</sup>500<br><span class="month">Unica Vez<span></li>
+          <li class="features first-feat">Prioridad en tasaciones</li>
+          <li class="features">Contacto telefonico</li>
+          <li class="features">Actualizaciones semanales</li>
+          <li>
+            <button class="pricing-button" href="#" data-name="Plan Empresario" data-price="500">Elegir
+              Empresario</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!--Content ends-->
+
+</body>
+
+</html>
+
+<script src="js/barrios.js"></script>
+<script src="js/precios.js"></script>
+<script src="js/cotizador.js"></script>
+<script src="js/checkout_efect.js"></script>

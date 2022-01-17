@@ -1,0 +1,20 @@
+$colorAzul: #131e7c;
+$colorAmarillo:#f7c645;
+$primary-color:black;
+
+
+// * Mixin Responsive
+
+$min-viewport: 350;
+$max-viewport: 1792;
+
+@mixin responsive($property, $property-min, $property-max) {
+    #{$property}: calc(#{$property-min}px + (#{$property-max} - #{$property-min}) * ( (100vw - #{$min-viewport}px) / (#{$max-viewport} - #{$min-viewport}) )) !important;
+}
+
+@mixin transition($seconds) {
+    -webkit-transition: all $seconds cubic-bezier(.07, .49, 1, .08);
+    -moz-transition: all $seconds cubic-bezier(.07, .49, 1, .08);
+    transition: all $seconds cubic-bezier(.07, .49, 1, .08);
+}
+
